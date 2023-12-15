@@ -1,7 +1,21 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  base: '/',
+  resolve: {
+    alias: {
+      src: '/src',
+      styles: '/src/styles',
+    },
+  },
+  plugins: [react(), viteTsconfigPaths()],
+  server: {
+    open: true,
+    port: 3000,
+  },
+  build: {
+    outDir: 'build',
+  },
+});
